@@ -25,7 +25,7 @@ func (s Server) AddTweet(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	t := tweet{}
+	t := Tweet{}
 	if err := json.Unmarshal(body, &t); err != nil {
 		log.Println("Failed to unmarshal payload:", err)
 		w.WriteHeader(http.StatusBadRequest)
@@ -52,7 +52,7 @@ func (s Server) AddTweet(w http.ResponseWriter, r *http.Request) {
 }
 
 type tweetsList struct {
-	Tweets []tweet `json:"tweets"`
+	Tweets []Tweet `json:"tweets"`
 }
 
 func (s Server) ListTweets(w http.ResponseWriter, r *http.Request) {
