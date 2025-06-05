@@ -1,4 +1,4 @@
-exercise_id = "261a8486-6ba4-4054-9f24-1ea36a632e21"
-directory = "project-http-twitter"
+exercise_id = "c96a9af7-09f0-444f-81bc-24309a0fca72"
+directory = "15-concurrency/09-buffered-channels"
 is_text_only = false
 is_optional = false
