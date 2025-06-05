@@ -1,19 +1,24 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
-	files := listFiles("testdata")
+	all := flag.Bool("a", false, "list all files")
+	flag.Parse()
+
+	files := listFiles("testdata", *all)
 	for _, file := range files {
 		fmt.Println(file)
 	}
 }
 
-func listFiles(dirname string) []string {
+func listFiles(dirname string, all bool) []string {
 	var dirs []string
 
 	files, err := os.ReadDir(dirname)
@@ -22,7 +27,11 @@ func listFiles(dirname string) []string {
 	}
 
 	for _, f := range files {
-		dirs = append(dirs, f.Name())
+		name := f.Name()
+		if strings.HasPrefix(name, ".") && !all {
+			continue
+		}
+		dirs = append(dirs, name)
 	}
 
 	return dirs
